@@ -248,8 +248,7 @@ const Index = () => {
       {/* DONATE */}
       <section id="donate" className="container py-16 md:py-24">
         <div className="text-center mb-12">
-          <h2 className="font-pixel text-lg md:text-3xl text-foreground mb-4">Поддержи сервер 💛</h2>
-          <p className="text-muted-foreground text-base md:text-lg">Получи бонусы навсегда и помоги нам развиваться!</p>
+          <h2 className="font-pixel text-lg md:text-3xl text-foreground mb-4">Донат привилегии</h2>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
