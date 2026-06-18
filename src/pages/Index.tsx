@@ -268,6 +268,7 @@ const Index = () => {
               <button className="w-full py-3 bg-accent text-accent-foreground rounded-xl font-bold pixel-shadow hover:-translate-y-0.5 transition-transform">
                 Купить
               </button>
+              <p className="text-center text-xs text-muted-foreground mt-2">⏳ Покупка пока недоступна — скоро!</p>
             </div>
           ))}
         </div>
