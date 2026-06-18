@@ -103,10 +103,7 @@ const Index = () => {
                 {n.label}
               </button>
             ))}
-            <button onClick={() => scrollTo('donate')}
-              className="ml-2 px-5 py-2.5 bg-accent text-accent-foreground rounded-lg font-bold pixel-shadow hover:-translate-y-0.5 transition-transform">
-              Играть
-            </button>
+
           </nav>
 
           <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-2">
