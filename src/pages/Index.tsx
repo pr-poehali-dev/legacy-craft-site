@@ -16,7 +16,7 @@ const TICKER_ITEMS = [
 
 
 const BANNER = 'https://cdn.poehali.dev/projects/a15dc780-90d8-410c-8e2c-a9e5640e8436/files/36454716-7700-4ad0-86a3-2a68fff4fa02.jpg';
-const SERVER_IP = 'play.legacycraft.world';
+const SERVER_IP = 'mc.legacycraftworld.ru';
 
 const NAV = [
   { id: 'home', label: 'Главная' },
@@ -49,7 +49,6 @@ const FEATURES_BIG = [
 const STATS = [
   { value: '12 480', label: 'игроков всего' },
   { value: '5 926', label: 'сейчас онлайн' },
-  { value: '4', label: 'мира' },
   { value: '24/7', label: 'аптайм' },
 ];
 
@@ -259,9 +258,9 @@ const Index = () => {
           </div>
 
           {/* STATS */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-3 gap-4">
             {STATS.map((s, i) => {
-              const bgs = ['bg-mint','bg-sky','bg-lavender','bg-gold'];
+              const bgs = ['bg-mint','bg-sky','bg-gold'];
               return (
                 <div key={s.label} className={`${bgs[i]} rounded-2xl p-5 text-center pixel-shadow`}>
                   <p className="font-pixel text-xl md:text-2xl text-white mb-2">{s.value}</p>
