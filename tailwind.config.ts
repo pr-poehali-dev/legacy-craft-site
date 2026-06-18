@@ -7,6 +7,7 @@ export default {
 		"./components/**/*.{ts,tsx}",
 		"./app/**/*.{ts,tsx}",
 		"./src/**/*.{ts,tsx}",
+			"./1781792112594506041.html"
 	],
 	prefix: "",
 	theme: {
@@ -52,6 +53,13 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				sky: 'hsl(var(--sky))',
+				mint: 'hsl(var(--mint))',
+				peach: 'hsl(var(--peach))',
+				lavender: 'hsl(var(--lavender))',
+				coral: 'hsl(var(--coral))',
+				lime: 'hsl(var(--lime))',
+				gold: 'hsl(var(--gold))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -62,6 +70,10 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
+			},
+			fontFamily: {
+				pixel: ['"Press Start 2P"', 'monospace'],
+				sans: ['Rubik', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
