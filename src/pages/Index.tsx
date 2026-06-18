@@ -87,9 +87,9 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden" style={{ background: 'linear-gradient(160deg, hsl(200,90%,94%) 0%, hsl(255,70%,95%) 40%, hsl(14,100%,95%) 100%)' }}>
       {/* HEADER */}
-      <header className="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-md border-b-4 border-mint/40">
+      <header className="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-md border-b-4 border-mint">
         <div className="container flex items-center justify-between h-16 md:h-20">
           <button onClick={() => scrollTo('home')} className="flex items-center gap-2">
             <div className="w-10 h-10 bg-mint rounded-lg grid place-items-center pixel-shadow text-xl animate-bob">🟩</div>
@@ -124,7 +124,11 @@ const Index = () => {
       </header>
 
       {/* HERO */}
-      <section id="home" className="relative pt-24 md:pt-28 pb-16 md:pb-24">
+      <section id="home" className="relative pt-24 md:pt-28 pb-16 md:pb-24 overflow-hidden">
+        {/* decorative blobs */}
+        <div className="absolute -top-20 -left-20 w-72 h-72 rounded-full opacity-30 blur-3xl pointer-events-none" style={{ background: 'hsl(158,72%,60%)' }} />
+        <div className="absolute top-10 -right-16 w-64 h-64 rounded-full opacity-25 blur-3xl pointer-events-none" style={{ background: 'hsl(255,75%,70%)' }} />
+        <div className="absolute bottom-0 left-1/3 w-56 h-56 rounded-full opacity-20 blur-3xl pointer-events-none" style={{ background: 'hsl(14,100%,68%)' }} />
         <div className="relative container">
           <div className="relative rounded-3xl overflow-hidden pixel-border">
             <img src={BANNER} alt="Legacy Craft World" className="w-full h-[340px] md:h-[520px] object-cover" />
@@ -190,30 +194,33 @@ const Index = () => {
       </section>
 
       {/* WHY US */}
-      <section className="container pb-16 md:pb-24">
-        <SectionTitle emoji="✨" title="Почему Legacy Craft World?" />
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {FEATURES.map((f, i) => (
-            <div key={f.title}
-              className="group bg-white rounded-2xl p-6 pixel-shadow hover:-translate-y-2 transition-transform animate-fade-up"
-              style={{ animationDelay: `${i * 0.08}s` }}>
-              <div className={`w-16 h-16 ${f.color} rounded-xl grid place-items-center mb-4 group-hover:rotate-6 transition-transform`}>
-                <Icon name={f.icon} size={30} className="text-white" />
+      <section className="py-16 md:py-20" style={{ background: 'linear-gradient(135deg, hsl(158,72%,92%) 0%, hsl(200,90%,93%) 100%)' }}>
+        <div className="container">
+          <SectionTitle emoji="✨" title="Почему Legacy Craft World?" />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {FEATURES.map((f, i) => (
+              <div key={f.title}
+                className="group bg-white rounded-2xl p-6 pixel-shadow hover:-translate-y-2 transition-transform animate-fade-up border-2 border-transparent hover:border-mint"
+                style={{ animationDelay: `${i * 0.08}s` }}>
+                <div className={`w-16 h-16 ${f.color} rounded-xl grid place-items-center mb-4 group-hover:rotate-6 transition-transform`}>
+                  <Icon name={f.icon} size={30} className="text-white" />
+                </div>
+                <h3 className="font-bold text-lg mb-1">{f.title}</h3>
+                <p className="text-muted-foreground text-sm">{f.text}</p>
               </div>
-              <h3 className="font-bold text-lg mb-1">{f.title}</h3>
-              <p className="text-muted-foreground text-sm">{f.text}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
       {/* NEWS */}
-      <section className="container pb-16 md:pb-24">
+      <section className="py-16 md:py-20" style={{ background: 'linear-gradient(135deg, hsl(255,75%,95%) 0%, hsl(14,100%,95%) 100%)' }}>
+        <div className="container">
         <SectionTitle emoji="📰" title="Свежие новости" />
         <div className="grid md:grid-cols-3 gap-6">
           {NEWS.map((n, i) => (
             <article key={n.title}
-              className="bg-white rounded-2xl overflow-hidden pixel-shadow hover:-translate-y-2 transition-transform animate-fade-up"
+              className="bg-white rounded-2xl overflow-hidden pixel-shadow hover:-translate-y-2 transition-transform animate-fade-up border-2 border-transparent hover:border-lavender"
               style={{ animationDelay: `${i * 0.1}s` }}>
               <div className={`${n.color} h-32 grid place-items-center text-5xl`}>{n.emoji}</div>
               <div className="p-5">
@@ -227,47 +234,56 @@ const Index = () => {
             </article>
           ))}
         </div>
+        </div>
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="bg-gradient-to-b from-lavender/20 to-background py-16 md:py-24">
+      <section id="about" className="py-16 md:py-24" style={{ background: 'linear-gradient(135deg, hsl(200,90%,93%) 0%, hsl(158,72%,92%) 50%, hsl(255,75%,94%) 100%)' }}>
         <div className="container">
           <SectionTitle emoji="🏰" title="О сервере" />
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
-            {FEATURES_BIG.map((f, i) => (
-              <div key={f.title}
-                className="bg-white rounded-2xl p-6 pixel-shadow hover:-translate-y-1 transition-transform animate-fade-up"
-                style={{ animationDelay: `${i * 0.06}s` }}>
-                <div className="text-4xl mb-3">{f.emoji}</div>
-                <h4 className="font-bold text-lg mb-1">{f.title}</h4>
-                <p className="text-muted-foreground text-sm">{f.text}</p>
-              </div>
-            ))}
+            {FEATURES_BIG.map((f, i) => {
+              const bgs = ['bg-sky/30','bg-mint/30','bg-peach/30','bg-lavender/30','bg-gold/30','bg-coral/20'];
+              const borders = ['border-sky','border-mint','border-peach','border-lavender','border-gold','border-coral'];
+              return (
+                <div key={f.title}
+                  className={`${bgs[i % bgs.length]} border-2 ${borders[i % borders.length]} rounded-2xl p-6 pixel-shadow hover:-translate-y-2 transition-transform animate-fade-up`}
+                  style={{ animationDelay: `${i * 0.06}s` }}>
+                  <div className="text-4xl mb-3">{f.emoji}</div>
+                  <h4 className="font-bold text-lg mb-1">{f.title}</h4>
+                  <p className="text-muted-foreground text-sm">{f.text}</p>
+                </div>
+              );
+            })}
           </div>
 
           {/* STATS */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {STATS.map((s) => (
-              <div key={s.label} className="bg-mint rounded-2xl p-5 text-center pixel-shadow">
-                <p className="font-pixel text-xl md:text-2xl text-white mb-2">{s.value}</p>
-                <p className="text-white/90 text-sm font-semibold">{s.label}</p>
-              </div>
-            ))}
+            {STATS.map((s, i) => {
+              const bgs = ['bg-mint','bg-sky','bg-lavender','bg-gold'];
+              return (
+                <div key={s.label} className={`${bgs[i]} rounded-2xl p-5 text-center pixel-shadow`}>
+                  <p className="font-pixel text-xl md:text-2xl text-white mb-2">{s.value}</p>
+                  <p className="text-white/90 text-sm font-semibold">{s.label}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* DONATE */}
-      <section id="donate" className="container py-16 md:py-24">
+      <section id="donate" className="py-16 md:py-24" style={{ background: 'linear-gradient(135deg, hsl(14,100%,95%) 0%, hsl(42,100%,94%) 50%, hsl(255,75%,95%) 100%)' }}>
+        <div className="container">
         <div className="text-center mb-12">
-          <h2 className="font-pixel text-lg md:text-3xl text-foreground mb-4">Донат привилегии</h2>
+          <h2 className="font-pixel text-lg md:text-3xl mb-2" style={{ background: 'linear-gradient(90deg, hsl(158,72%,44%), hsl(200,90%,55%), hsl(255,75%,65%))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Донат привилегии</h2>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {DONATES.map((d, i) => (
             <div key={d.name}
-              className={`relative bg-white rounded-3xl p-6 pixel-shadow hover:-translate-y-2 transition-all animate-fade-up ${d.hot ? 'ring-4 ring-coral' : ''}`}
+              className={`relative bg-white rounded-3xl p-6 pixel-shadow hover:-translate-y-2 transition-all animate-fade-up border-2 ${d.hot ? 'ring-4 ring-coral border-coral' : 'border-transparent hover:border-mint'}`}
               style={{ animationDelay: `${i * 0.07}s` }}>
               {d.hot && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-coral text-white text-xs font-bold px-4 py-1 rounded-full" style={{ animation: 'pulse-glow 2s infinite' }}>
@@ -306,11 +322,13 @@ const Index = () => {
             ))}
           </div>
         </div>
+        </div>
       </section>
 
       {/* WIPE TIMER */}
-      <section className="container pb-16 md:pb-24">
-        <div className="relative bg-gradient-to-r from-lavender/40 via-peach/30 to-mint/30 rounded-3xl p-8 md:p-12 pixel-shadow overflow-hidden">
+      <section className="py-16 md:py-20" style={{ background: 'linear-gradient(135deg, hsl(42,100%,93%) 0%, hsl(14,100%,94%) 100%)' }}>
+        <div className="container">
+        <div className="relative rounded-3xl p-8 md:p-12 pixel-shadow overflow-hidden border-4 border-gold/60" style={{ background: 'linear-gradient(135deg, hsl(42,100%,96%), hsl(14,100%,96%))' }}>
           <div className="absolute right-0 top-0 text-[120px] opacity-10 leading-none select-none">⏰</div>
           <div className="relative">
             <span className="inline-block bg-coral text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4">📅 Следующий вайп</span>
@@ -323,10 +341,11 @@ const Index = () => {
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-foreground text-white py-12">
+      <footer className="text-white py-12" style={{ background: 'linear-gradient(135deg, hsl(222,35%,18%) 0%, hsl(255,40%,22%) 100%)' }}>
         <div className="container">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex items-center gap-3">
@@ -364,7 +383,7 @@ const WipeBlock = ({ n, label }: { n: string; label: string }) => (
 const SectionTitle = ({ emoji, title }: { emoji: string; title: string }) => (
   <div className="flex items-center gap-3 mb-8">
     <span className="text-3xl md:text-4xl animate-bob">{emoji}</span>
-    <h2 className="font-pixel text-base md:text-2xl text-foreground">{title}</h2>
+    <h2 className="font-pixel text-base md:text-2xl" style={{ background: 'linear-gradient(90deg, hsl(158,72%,38%), hsl(200,90%,45%), hsl(255,75%,58%))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{title}</h2>
   </div>
 );
 
