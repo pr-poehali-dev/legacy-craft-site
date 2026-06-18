@@ -220,13 +220,6 @@ const Index = () => {
       <section id="about" className="bg-gradient-to-b from-lavender/20 to-background py-16 md:py-24">
         <div className="container">
           <SectionTitle emoji="🏰" title="О сервере" />
-          <div className="bg-white rounded-3xl p-6 md:p-10 pixel-shadow mb-10">
-            <h3 className="font-pixel text-sm md:text-base text-mint mb-4">Легенда мира</h3>
-            <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-              Давным-давно в кубическом мире процветало королевство мастеров-строителей. После Великого Вайпа от него остались лишь руины и легенды.
-              Теперь ты — один из героев, кто возродит это наследие. Строй, торгуй, сражайся и пиши новую главу истории <b className="text-foreground">Legacy Craft World</b>.
-            </p>
-          </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
             {FEATURES_BIG.map((f, i) => (
@@ -271,15 +264,7 @@ const Index = () => {
               )}
               <div className={`w-16 h-16 ${d.color} rounded-2xl grid place-items-center text-3xl mb-4`}>{d.emoji}</div>
               <h3 className="font-pixel text-base text-foreground mb-1">{d.name}</h3>
-              <p className="font-pixel text-2xl text-mint mb-5">{d.price}</p>
-              <ul className="space-y-2 mb-6">
-                {d.perks.map((p) => (
-                  <li key={p} className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <Icon name="Check" size={18} className="text-mint shrink-0 mt-0.5" />
-                    <span>{p}</span>
-                  </li>
-                ))}
-              </ul>
+              <p className="font-pixel text-2xl text-mint mb-6">{d.price}</p>
               <button className="w-full py-3 bg-accent text-accent-foreground rounded-xl font-bold pixel-shadow hover:-translate-y-0.5 transition-transform">
                 Купить
               </button>
