@@ -162,7 +162,7 @@ const Index = () => {
                   <Icon name={copied ? 'Check' : 'Copy'} size={18} className="text-muted-foreground" />
                 </button>
                 <button onClick={() => scrollTo('donate')}
-                  className="px-6 py-3.5 bg-accent text-accent-foreground rounded-xl font-bold text-lg pixel-shadow hover:-translate-y-0.5 transition-transform">
+                  className="px-6 py-3.5 btn-accent text-white rounded-xl font-bold text-lg">
                   Играть сейчас
                 </button>
               </div>
@@ -176,7 +176,7 @@ const Index = () => {
               <div className="flex flex-wrap gap-2">
                 {['1.16.5', '1.17.1', '1.18.2', '1.19.2', '1.20.1'].map((v) => (
                   <button key={v} onClick={() => setActiveVersion(v)}
-                    className={`px-4 py-2 rounded-lg font-semibold transition-all ${activeVersion === v ? 'bg-mint text-white pixel-shadow' : 'bg-muted text-foreground hover:bg-mint/20'}`}>
+                    className={`px-4 py-2 rounded-lg font-semibold transition-all ${activeVersion === v ? 'btn-primary text-white' : 'bg-muted text-foreground hover:bg-mint/20'}`}>
                     {v}
                   </button>
                 ))}
@@ -293,7 +293,7 @@ const Index = () => {
               <div className={`w-16 h-16 ${d.color} rounded-2xl grid place-items-center text-3xl mb-4`}>{d.emoji}</div>
               <h3 className="font-pixel text-base text-foreground mb-1">{d.name}</h3>
               <p className="font-pixel text-2xl text-mint mb-6">{d.price}</p>
-              <button className="w-full py-3 bg-accent text-accent-foreground rounded-xl font-bold pixel-shadow hover:-translate-y-0.5 transition-transform">
+              <button className="w-full py-3 btn-accent text-white rounded-xl font-bold">
                 Купить
               </button>
               <p className="text-center text-xs text-muted-foreground mt-2">⏳ Покупка пока недоступна — скоро!</p>

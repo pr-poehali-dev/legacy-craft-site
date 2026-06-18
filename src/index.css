@@ -186,6 +186,45 @@
   }
 }
 
+.btn-primary {
+  background: linear-gradient(
+    135deg,
+    hsl(158, 72%, 48%) 0%,
+    hsl(158, 72%, 40%) 100%
+  );
+  box-shadow:
+    0 4px 0 hsl(158, 72%, 30%),
+    0 6px 16px hsl(158, 72%, 40%, 0.35);
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 0 hsl(158, 72%, 30%),
+    0 8px 20px hsl(158, 72%, 40%, 0.45);
+}
+.btn-accent {
+  background: linear-gradient(
+    135deg,
+    hsl(14, 100%, 62%) 0%,
+    hsl(5, 100%, 58%) 100%
+  );
+  box-shadow:
+    0 4px 0 hsl(14, 100%, 40%),
+    0 6px 16px hsl(14, 100%, 62%, 0.35);
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+.btn-accent:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 0 hsl(14, 100%, 40%),
+    0 8px 20px hsl(14, 100%, 62%, 0.45);
+}
+
 .leaf {
   position: absolute;
   top: 100%;
