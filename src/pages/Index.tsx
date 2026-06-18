@@ -1,5 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Icon from '@/components/ui/icon';
+
+const CHARS_IMG = 'https://cdn.poehali.dev/projects/a15dc780-90d8-410c-8e2c-a9e5640e8436/files/e4235c16-1582-49f7-a4c9-9a3371375584.jpg';
+
+const TICKER_ITEMS = [
+  '⚔️ Турнир на арене — каждую пятницу в 20:00',
+  '💎 Двойной опыт по выходным',
+  '🏆 Топ игрок недели: _Steve_',
+  '🌿 Новый биом уже на сервере!',
+  '🎁 Бонус за вход 7 дней подряд',
+  '🛡️ Кланы: набирай команду и захватывай земли',
+  '🐉 Дракон появится в эту субботу в 21:00',
+];
+
+const GRID_SIZE = 7;
+const DIAMOND = '💎';
+const STONE = ['🪨','🟫','⬛','🟩','🌿'][0];
+const CELLS = ['🪨','🟫','⬛','🪨','🟫','⬛','🪨','🟫'];
 
 const BANNER = 'https://cdn.poehali.dev/projects/a15dc780-90d8-410c-8e2c-a9e5640e8436/files/36454716-7700-4ad0-86a3-2a68fff4fa02.jpg';
 const SERVER_IP = 'play.legacycraft.world';
@@ -59,6 +76,33 @@ const Index = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
+  // Mini-game state
+  const [grid, setGrid] = useState<string[]>(() => {
+    const g = Array(GRID_SIZE * GRID_SIZE).fill('').map((_, i) => CELLS[i % CELLS.length]);
+    const diamonds = [3, 11, 22, 31, 40, 47];
+    diamonds.forEach(i => { g[i] = DIAMOND; });
+    return g;
+  });
+  const [score, setScore] = useState(0);
+  const [gameMsg, setGameMsg] = useState('');
+  const msgTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const digCell = (i: number) => {
+    if (grid[i] === '') return;
+    const isDiamond = grid[i] === DIAMOND;
+    setGrid(prev => { const g = [...prev]; g[i] = ''; return g; });
+    if (isDiamond) {
+      setScore(s => s + 1);
+      setGameMsg('💎 +1 алмаз!');
+    } else {
+      setGameMsg('🪨 Просто камень...');
+    }
+    if (msgTimer.current) clearTimeout(msgTimer.current);
+    msgTimer.current = setTimeout(() => setGameMsg(''), 1200);
+  };
+
+  useEffect(() => () => { if (msgTimer.current) clearTimeout(msgTimer.current); }, []);
+
   const copyIp = () => {
     navigator.clipboard?.writeText(SERVER_IP);
     setCopied(true);
@@ -110,8 +154,17 @@ const Index = () => {
         )}
       </header>
 
+      {/* TICKER */}
+      <div className="fixed top-16 md:top-20 inset-x-0 z-40 bg-mint/90 backdrop-blur-sm overflow-hidden h-9 flex items-center">
+        <div className="flex gap-16 whitespace-nowrap" style={{ animation: 'ticker 40s linear infinite' }}>
+          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((t, i) => (
+            <span key={i} className="text-white font-semibold text-sm">{t}</span>
+          ))}
+        </div>
+      </div>
+
       {/* HERO */}
-      <section id="home" className="relative pt-24 md:pt-28 pb-16 md:pb-24">
+      <section id="home" className="relative pt-32 md:pt-36 pb-16 md:pb-24">
         <div className="relative container">
           <div className="relative rounded-3xl overflow-hidden pixel-border">
             <img src={BANNER} alt="Legacy Craft World" className="w-full h-[340px] md:h-[520px] object-cover" />
@@ -295,6 +348,68 @@ const Index = () => {
         </div>
       </section>
 
+      {/* MINI-GAME */}
+      <section className="container pb-16 md:pb-24">
+        <SectionTitle emoji="⛏️" title="Добывай алмазы!" />
+        <div className="bg-white rounded-3xl p-6 md:p-10 pixel-shadow">
+          <div className="flex flex-col md:flex-row gap-8 items-center">
+            <div className="flex-1">
+              <p className="text-muted-foreground mb-4">Нажимай на блоки — ищи спрятанные алмазы и зарабатывай очки! Активные игроки получат бонусы на сервере.</p>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="bg-sky/30 rounded-xl px-6 py-3 flex items-center gap-2">
+                  <span className="text-2xl">💎</span>
+                  <div>
+                    <p className="font-pixel text-xl text-mint">{score}</p>
+                    <p className="text-xs text-muted-foreground">алмазов</p>
+                  </div>
+                </div>
+                {gameMsg && (
+                  <span className="font-bold text-lg animate-fade-up">{gameMsg}</span>
+                )}
+              </div>
+              <div
+                className="grid gap-1.5"
+                style={{ gridTemplateColumns: `repeat(${GRID_SIZE}, minmax(0, 1fr))`, maxWidth: 360 }}>
+                {grid.map((cell, i) => (
+                  <button key={i} onClick={() => digCell(i)}
+                    className={`aspect-square rounded-lg text-lg flex items-center justify-center transition-all
+                      ${cell === '' ? 'bg-muted/40 cursor-default' : 'bg-muted hover:scale-110 hover:bg-mint/30 active:scale-95 pixel-shadow'}`}>
+                    {cell}
+                  </button>
+                ))}
+              </div>
+              <button onClick={() => {
+                const g = Array(GRID_SIZE * GRID_SIZE).fill('').map((_, i) => CELLS[i % CELLS.length]);
+                [3,11,22,31,40,47].forEach(i => { g[i] = DIAMOND; });
+                setGrid(g); setScore(0);
+              }} className="mt-4 flex items-center gap-2 text-sm font-bold text-mint hover:opacity-70 transition-opacity">
+                <Icon name="RefreshCw" size={16} /> Начать заново
+              </button>
+            </div>
+            <div className="shrink-0">
+              <img src={CHARS_IMG} alt="Персонажи" className="w-56 md:w-72 rounded-2xl pixel-shadow animate-bob" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* WIPE TIMER */}
+      <section className="container pb-16 md:pb-24">
+        <div className="relative bg-gradient-to-r from-lavender/40 via-peach/30 to-mint/30 rounded-3xl p-8 md:p-12 pixel-shadow overflow-hidden">
+          <div className="absolute right-0 top-0 text-[120px] opacity-10 leading-none select-none">⏰</div>
+          <div className="relative">
+            <span className="inline-block bg-coral text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4">📅 Следующий вайп</span>
+            <h3 className="font-pixel text-base md:text-2xl text-foreground mb-3">Большое обновление уже скоро!</h3>
+            <p className="text-muted-foreground max-w-lg mb-6">После вайпа: новая карта, переработанная экономика, эксклюзивные данжи и секретный биом. Успей построить — лучшие постройки будут сохранены в музее сервера.</p>
+            <div className="flex flex-wrap gap-3">
+              <WipeBlock n="14" label="дней" />
+              <WipeBlock n="07" label="часов" />
+              <WipeBlock n="32" label="минут" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FOOTER */}
       <footer className="bg-foreground text-white py-12">
         <div className="container">
@@ -323,6 +438,13 @@ const Index = () => {
     </div>
   );
 };
+
+const WipeBlock = ({ n, label }: { n: string; label: string }) => (
+  <div className="bg-white rounded-2xl px-6 py-4 text-center pixel-shadow min-w-[80px]">
+    <p className="font-pixel text-2xl text-coral">{n}</p>
+    <p className="text-xs text-muted-foreground mt-1">{label}</p>
+  </div>
+);
 
 const SectionTitle = ({ emoji, title }: { emoji: string; title: string }) => (
   <div className="flex items-center gap-3 mb-8">
