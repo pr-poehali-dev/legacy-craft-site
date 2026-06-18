@@ -48,7 +48,7 @@ const FEATURES_BIG = [
 
 const STATS = [
   { value: '12 480', label: 'игроков всего' },
-  { value: '347', label: 'сейчас онлайн' },
+  { value: '5 926', label: 'сейчас онлайн' },
   { value: '4', label: 'мира' },
   { value: '24/7', label: 'аптайм' },
 ];
@@ -193,7 +193,7 @@ const Index = () => {
             <div className="bg-mint rounded-2xl p-5 pixel-shadow flex items-center gap-4">
               <div className="w-14 h-14 bg-white/30 rounded-xl grid place-items-center text-2xl animate-bob">👥</div>
               <div>
-                <p className="font-pixel text-2xl text-white">347</p>
+                <p className="font-pixel text-2xl text-white">5 926</p>
                 <p className="text-white/90 text-sm font-semibold">игроков онлайн</p>
               </div>
             </div>
