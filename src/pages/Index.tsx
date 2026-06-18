@@ -126,17 +126,8 @@ const Index = () => {
         )}
       </header>
 
-      {/* TICKER */}
-      <div className="fixed top-16 md:top-20 inset-x-0 z-40 bg-mint/90 backdrop-blur-sm overflow-hidden h-9 flex items-center">
-        <div className="flex gap-16 whitespace-nowrap" style={{ animation: 'ticker 40s linear infinite' }}>
-          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((t, i) => (
-            <span key={i} className="text-white font-semibold text-sm">{t}</span>
-          ))}
-        </div>
-      </div>
-
       {/* HERO */}
-      <section id="home" className="relative pt-32 md:pt-36 pb-16 md:pb-24">
+      <section id="home" className="relative pt-24 md:pt-28 pb-16 md:pb-24">
         <div className="relative container">
           <div className="relative rounded-3xl overflow-hidden pixel-border">
             <img src={BANNER} alt="Legacy Craft World" className="w-full h-[340px] md:h-[520px] object-cover" />
