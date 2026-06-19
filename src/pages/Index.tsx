@@ -355,9 +355,7 @@ const Index = () => {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <a href="#" className="flex items-center gap-2 bg-white/10 hover:bg-white/20 px-5 py-2.5 rounded-xl font-semibold transition-colors">
-                <Icon name="MessageCircle" size={20} /> ВКонтакте
-              </a>
+              <a href="#" className="flex items-center gap-2 bg-white/10 hover:bg-white/20 px-5 py-2.5 rounded-xl font-semibold transition-colors">наш ВК</a>
               <button onClick={() => scrollTo('home')} className="flex items-center gap-2 bg-mint hover:bg-mint/80 px-5 py-2.5 rounded-xl font-semibold transition-colors">
                 <Icon name="ArrowUp" size={20} /> Наверх
               </button>
